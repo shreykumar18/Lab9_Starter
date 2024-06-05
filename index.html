@@ -102,6 +102,45 @@
 
     // Start your code here
     // You may move this JS to another file if you wish
+
+    document.getElementById('log-btn').addEventListener('click', () => console.log('Console Log button clicked'));
+    document.getElementById('error-btn').addEventListener('click', () => console.error('Console Error button clicked'));
+    document.getElementById('count-btn').addEventListener('click', () => console.count('Console Count'));
+    document.getElementById('warn-btn').addEventListener('click', () => console.warn('Console Warn button clicked'));
+    document.getElementById('assert-btn').addEventListener('click', () => console.assert(false, 'Console Assert button clicked'));
+    document.getElementById('clear-btn').addEventListener('click', () => console.clear());
+    document.getElementById('dir-btn').addEventListener('click', () => console.dir(document.body));
+    document.getElementById('dirxml-btn').addEventListener('click', () => console.dirxml(document));
+    document.getElementById('group-start-btn').addEventListener('click', () => {
+      console.group('Grouped Logs');
+      console.log('First log in group');
+      console.log('Second log in group');
+    });
+    document.getElementById('group-end-btn').addEventListener('click', () => console.groupEnd());
+    document.getElementById('table-btn').addEventListener('click', () => console.table([{a: 1, b: 'Y'}, {a: 2, b: 'Z'}]));
+    document.getElementById('start-timer-btn').addEventListener('click', () => console.time('Timer'));
+    document.getElementById('end-timer-btn').addEventListener('click', () => console.timeEnd('Timer'));
+    document.getElementById('trace-btn').addEventListener('click', () => console.trace('Trace button clicked'));
+    document.getElementById('global-error-btn').addEventListener('click', () => {
+      setTimeout(() => {
+        throw new Error('Global error triggered');
+      }, 0);
+    });
+
+    window.onerror = function (message, source, lineno, colno, error) {
+      console.log('Global error caught');
+      console.log(`Message: ${message}`);
+      console.log(`Source: ${source}`);
+      console.log(`Line: ${lineno}, Column: ${colno}`);
+      console.log(`Error object: ${error}`);
+    };
+
+    (function(w,d,s,n) {
+      w[n] = w[n] || function() { (w[n].q = w[n].q || []).push(arguments) };
+      var f = d.getElementsByTagName(s)[0], e = d.createElement(s); e.async = 1; e.src = 'https://cdn.trackjs.com/releases/current/tracker.js';
+      f.parentNode.insertBefore(e, f);
+    })(window, document, 'script', 'trackJs');
+    trackJs('createToken', 'YOUR_TRACKJS_TOKEN');
   </script>
 </body>
 
